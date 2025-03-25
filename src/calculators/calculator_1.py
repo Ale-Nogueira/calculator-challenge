@@ -15,12 +15,9 @@ class Calculator1:
 
     def __validate_body(self, body: Dict) -> List[float]:
         if "numbers" not in body or not isinstance(body["numbers"], list):
-            raise ValueError("Body mal formatado! O campo 'numbers' deve ser uma lista.")
+            raise Exception("Body mal formatado! O campo 'numbers' deve ser uma lista.")
 
         numbers = body["numbers"]
-
-        if not all(isinstance(num, (int, float)) for num in numbers):
-            raise ValueError("Todos os elementos em 'numbers' devem ser números.")
 
         if not numbers:
             raise ValueError("A lista 'numbers' não pode estar vazia.")
@@ -34,7 +31,7 @@ class Calculator1:
         return{
             "data": {
                 "calculator": 1,
-                "result": calc_result
+                "result": round(calc_result, 2)
             }
 
         }
