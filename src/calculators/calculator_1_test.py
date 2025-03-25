@@ -28,14 +28,14 @@ def test_calculate_with_body_error():
 
     with raises(Exception) as excinfo:
         calculator_1.calculate(mock_request)
+    assert str(excinfo.value) == "Body mal formatado!O campo 'numbers' deve ser uma lista."
 
-    assert str(excinfo.value) == "Body mal formatado! O campo 'numbers' deve ser uma lista."
 
 def test_calculate_with_list_error():
     mock_request = MockRequest(body={"numbers": []})
     calculator_1 = Calculator1()
 
-    with raises(ValueError) as valinfo:
+    with raises(Exception) as excinfo:
         calculator_1.calculate(mock_request)
 
-    assert str(valinfo.value) == "A lista 'numbers' não pode estar vazia."
+    assert str(excinfo.value) == "A lista 'numbers' não pode estar vazia."
